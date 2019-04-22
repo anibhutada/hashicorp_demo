@@ -1,3 +1,4 @@
+
 provider "aws" {
     region = "${var.region}"
 }
@@ -33,7 +34,6 @@ resource "aws_instance" "vault" {
   instance_type          = "${var.vault_instance_type}"
   key_name               = "${var.key_name}"
   vpc_security_group_ids = ["${var.vault_sg_name}"]
-  user_data = "${data.template_file.user_data_jenkins.rendered}"
   root_block_device {
     volume_type           = "gp2"
     volume_size           = 30
@@ -51,5 +51,5 @@ resource "aws_route53_record" "jenkins" {
   name = "hashicorp_demo_vault.bap.com"
   type = "A"
   ttl = "300"
-  records = ["${vault_public_ip}"]
+  records = ["${var.vault_public_ip}"]
 }
