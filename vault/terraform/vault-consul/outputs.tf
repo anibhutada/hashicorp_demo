@@ -1,3 +1,3 @@
-output "jenkins_master_public_ip" {
+output "vault_public_ip" {
   value = "${aws_instance.vault.public_ip}"
 }
