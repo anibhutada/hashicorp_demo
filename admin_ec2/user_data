@@ -1,0 +1,29 @@
+#!/bin/bash
+#general
+cd /home/ec2-user
+sudo yum update -y
+sudo yum -y install unzip
+sudo yum -y install git
+export AWS_ACCESS_KEY_ID="OMIITED"
+export AWS_SECRET_ACCESS_KEY="OMIITED"
+export AWS_DEFAULT_REGION="us-east-1"
+
+#terraform install
+wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_386.zip
+unzip terraform_0.11.13_linux_386.zip
+sudo mv terraform /usr/local/bin/
+rm -rf terraform_0.11.13_linux_386.zip
+terraform --version
+
+#packer install
+sudo wget https://releases.hashicorp.com/packer/1.4.0/packer_1.4.0_linux_386.zip
+sudo unzip packer_1.4.0_linux_386.zip
+sudo mv packer /usr/local/bin/
+rm -rf packer_1.4.0_linux_386.zip
+packer --version
+
+#clone repo
+git clone https://github.com/bpayt2/hashicorp_demo.git
+sudo chmod 777 /home/ec2-user/hashicorp_demo/vault/packer/modules/run-vault/run-vault
+sudo chmod 777 /home/ec2-user/hashicorp_demo/vault/packer/modules/install-vault/install-vault
+sudo chmod 777 /home/ec2-user/hashicorp_demo/vault/packer/modules/update-certificate-store/update-certificate-store
