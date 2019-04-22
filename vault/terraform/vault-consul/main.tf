@@ -14,6 +14,7 @@ module "ec2" {
     source = "./modules/ec2"
     region = "${var.region}"
     vault_instance_type = "${var.vault_instance_type}"
+    vault_public_ip = "${module.ec2.vault_public_ip}"
     key_name = "${var.key_name}"
     vault_sg_name = "${var.vault_sg_name}"
     }
