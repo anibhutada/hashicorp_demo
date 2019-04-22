@@ -51,5 +51,5 @@ resource "aws_route53_record" "jenkins" {
   name = "hashicorp_demo_vault.bap.com"
   type = "A"
   ttl = "300"
-  records = ["${aws_instance.vault.public_ip}"]
+  records = ["${vault_public_ip}"]
 }
