@@ -15,13 +15,13 @@ module "ec2" {
     region = "${var.region}"
     vault_instance_type = "${var.vault_instance_type}"
     key_name = "${var.key_name}"
-    vault_sg_name = ["${var.vault_sg_name}"]
+    vault_sg_name = "${var.vault_sg_name}"
     }
 
 module "r53" {
     source = "./modules/r53"
     hosted_zone = "${var.hosted_zone}"
-    vault_public_ip = ["${module.ec2.vault_public_ip}"]
+    vault_public_ip = "${module.ec2.vault_public_ip}"
     }
 
  output "vault_public_ip" {
