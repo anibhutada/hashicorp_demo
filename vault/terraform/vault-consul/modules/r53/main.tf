@@ -1,4 +1,4 @@
-resource "aws_route53_record" "jenkins" {
+resource "aws_route53_record" "vault" {
   zone_id = "${var.hosted_zone}"
   name = "hashicorp_demo_vault.bap.com"
   type = "A"
