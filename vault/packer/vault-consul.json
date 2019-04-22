@@ -34,7 +34,12 @@
   }],
   "provisioners": [{
     "type": "shell",
-    "inline": ["mkdir -p /tmp/terraform-aws-vault/modules"]
+    "inline": [
+      "mkdir -p /tmp/terraform-aws-vault/modules",
+      "sudo chmod 777 ./modules/run-vault/run-vault",
+      "sudo chmod 777 ./modules/install-vault/install-vault",
+      "sudo chmod 777 ./modules/update-certificate-store/update-certificate-store"
+    ]
   },{
     "type": "file",
     "source": "{{template_dir}}/modules/",
