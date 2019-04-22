@@ -8,9 +8,9 @@
     "consul_download_url": "{{env `CONSUL_DOWNLOAD_URL`}}",
     "vault_download_url": "{{env `VAULT_DOWNLOAD_URL`}}",
     "install_auth_signing_script": "true",
-    "ca_public_key_path": "/home/ec2-user/vault/private-tls-cert/ca.key.pem",
-    "tls_public_key_path": "/home/ec2-user/vault//private-tls-cert/vault.crt.pem",
-    "tls_private_key_path": "/home/ec2-user/vault/private-tls-cert/vault.key.pem"
+    "ca_public_key_path": "../terraform/private-tls-cert/ca.key.pem",
+    "tls_public_key_path": "../terraform/private-tls-cert/vault.crt.pem",
+    "tls_private_key_path": "../terraform/private-tls-cert/vault.key.pem"
   },
   "builders": [{
     "ami_name": "vault-consul-hashicorop-demo",
