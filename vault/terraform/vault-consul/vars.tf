@@ -1,5 +1,4 @@
-variable vault_public_ip {}
-variable vault_instance_type {
+variable "vault_instance_type" {
   default = "t2.micro"
 }
 variable "key_name" {
