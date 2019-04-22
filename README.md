@@ -1,5 +1,9 @@
 # hashicorp_demo
 
+#build admin_box (optional)
+Deploy EC2 instance via AWS console
+use ./admin_box/user_data contents as EC2 user data
+
 #packer create jenkins ami
 cd /home/ec2-user/hashicorp_demo/jenkins/packer/
 packer validate jenkins.json
