@@ -19,3 +19,8 @@ resource "aws_instance" "vault" {
     volume_size           = 30
     delete_on_termination = false
   }
+  tags {
+    Name   = "vault-consul"
+    Project   = "hashicorp_demo"
+  }
+}
