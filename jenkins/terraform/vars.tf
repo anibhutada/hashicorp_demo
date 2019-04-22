@@ -1,5 +1,4 @@
-variable "jenkins_master_public_ip" {}
-variable jenkins_master_instance_type {
+variable "jenkins_master_instance_type" {
   default = "t2.micro"
 }
 variable "key_name" {
