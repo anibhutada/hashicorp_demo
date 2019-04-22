@@ -1,5 +1,4 @@
-
-provider "aws" {
+provider "aws " {
     region = "${var.region}"
 }
 
@@ -7,24 +6,24 @@ terraform {
     backend "s3" {
       region = "us-east-1"
       bucket = "hashicorp-demo-state"
-      key = "terraform/jenkins/terraform.tfstate"
+      key = "terraform/vault/terraform.tfstate"
     }
 }
 
 module "ec2" {
     source = "./modules/ec2"
     region = "${var.region}"
-    instance_type = "${var.vault_instance_type}"
+    vault_instance_type = "${var.vault_instance_type}"
     key_name = "${var.key_name}"
-    vpc_security_group_ids = ["${var.vault_sg_name}"]
-    }
- 
-module "r53" {
-    source = "./modules/r53"
-    zone_id = "${var.hosted_zone}"
-    records = ["${module.ec2.vault_public_ip}"]
+    vault_sg_name = ["${var.vault_sg_name}"]
     }
 
- ouput "vault_public_ip" {
+module "r53" {
+    source = "./modules/r53"
+    hosted_zone = "${var.hosted_zone}"
+    vault_public_ip = ["${module.ec2.vault_public_ip}"]
+    }
+
+ output "vault_public_ip" {
      value = "${module.ec2.vault_public_ip}"
     }
