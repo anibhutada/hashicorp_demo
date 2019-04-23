@@ -1,0 +1,104 @@
+
+pipeline {
+
+  agent {
+
+    label 'linux01||linux02||linux03||linux04'
+
+  }
+
+  parameters {
+
+    password (description:'Please provide AWS Access key', name: 'AWS_ACCESS_KEY_ID')
+
+    password (description:'Please provide AWS Secret key', name: 'AWS_SECRET_ACCESS_KEY')
+
+    password (description:'Please provide AWS Session Token', name: 'AWS_SESSION_TOKEN')
+
+}
+
+
+
+environment {
+
+    TERRAFORM_HOME = '/opt/jenkins/m2/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/terraform_0.10.4'
+
+    AWS_ACCESS_KEY_ID = "${params.AWS_ACCESS_KEY_ID}"
+
+    AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
+
+    AWS_SESSION_TOKEN = "${params.AWS_SESSION_TOKEN}"
+
+    TF_VAR_vro_user_name = "TODOFROMVAULT"
+
+    TF_VAR_vro_password = "TODOFROMVAULT"
+
+    SERVICE_INSTANCE_PATH ="./terraform"
+
+  }
+
+ }
+
+
+
+    stage('Terraform Init') {
+
+      steps {
+
+        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
+
+          dir(path: '.terraform'){
+
+            deleteDir()
+
+          }
+
+          sh "${env.TERRAFORM_HOME}/terraform init -backend=true -input=false"
+
+        }
+
+
+
+      }
+
+   }
+
+    stage('Terraform Plan') {
+
+
+
+      steps {
+
+        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
+
+          sh "${env.TERRAFORM_HOME}/terraform plan -input=false"
+
+        }
+
+      }
+
+    }
+
+    stage('Terraform Apply') {
+
+
+
+      steps {
+
+         input 'Deploy Plan'
+
+        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
+
+          sh "${env.TERRAFORM_HOME}/terraform apply -lock=false -input=false"
+
+        }
+
+
+
+      }
+
+    }
+
+}
+
+}
