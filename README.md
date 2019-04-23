@@ -31,3 +31,10 @@ cd /home/ec2-user/hashicorp_demo/vault/terraform/vault-consul/
 terraform init
 terraform plan
 terraform apply -auto-approve
+
+#terraform deploy demo_service
+cd /home/ec2-user/hashicorp_demo/demo_service/
+terraform init
+terraform plan
+terraform apply -auto-approve
+
