@@ -40,60 +40,30 @@ stages{
     
     }
     stage('Terraform Init') {
-
-      steps {
-
-        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
-
-          dir(path: '.terraform'){
-
-            deleteDir()
-
-          }
-
-          sh "${env.TERRAFORM_HOME}/terraform init -backend=true -input=false"
-
-        }
-
-
-
+    
+    steps {
+      sh 'terraform init -backend=true -input=false'
       }
-
    }
 
     stage('Terraform Plan') {
 
-
-
       steps {
 
-        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
-
-          sh "${env.TERRAFORM_HOME}/terraform plan -input=false"
+          sh 'terraform plan -input=false -out=plan'
 
         }
-
-      }
 
     }
 
     stage('Terraform Apply') {
 
-
-
       steps {
 
-         input 'Deploy Plan'
-
-        dir(path: "${env.SERVICE_INSTANCE_PATH}") {
-
-          sh "${env.TERRAFORM_HOME}/terraform apply -lock=false -input=false"
+        sh 'terraform apply plan -lock=false -input=false'
 
         }
 
-
-
-      }
 
     }
 }
