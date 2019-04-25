@@ -29,8 +29,6 @@ environment {
 
   }
 
- }
-
 
 
     stage('Terraform Init') {
