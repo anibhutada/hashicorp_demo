@@ -21,19 +21,11 @@ pipeline {
 
 environment {
 
-    TERRAFORM_HOME = '/opt/jenkins/m2/tools/com.cloudbees.jenkins.plugins.customtools.CustomTool/terraform_0.10.4'
-
     AWS_ACCESS_KEY_ID = "${params.AWS_ACCESS_KEY_ID}"
 
     AWS_SECRET_ACCESS_KEY = "${params.AWS_SECRET_ACCESS_KEY}"
 
     AWS_SESSION_TOKEN = "${params.AWS_SESSION_TOKEN}"
-
-    TF_VAR_vro_user_name = "TODOFROMVAULT"
-
-    TF_VAR_vro_password = "TODOFROMVAULT"
-
-    SERVICE_INSTANCE_PATH ="./terraform"
 
   }
 
