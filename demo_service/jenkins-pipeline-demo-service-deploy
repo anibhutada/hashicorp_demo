@@ -1,12 +1,6 @@
 
 pipeline {
 
-  agent {
-
-    label 'linux01||linux02||linux03||linux04'
-
-  }
-
   parameters {
 
     password (description:'Please provide AWS Access key', name: 'AWS_ACCESS_KEY_ID')
