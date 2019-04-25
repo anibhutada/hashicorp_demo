@@ -24,6 +24,7 @@ data "aws_kms_alias" "vault-example" {
   name = "alias/${var.auto_unseal_kms_key_alias}"
 }
 module "vault_cluster" {
+  source = "modules/vault-cluster"
   cluster_name  = "${var.vault_cluster_name}"
   cluster_size  = "${var.vault_cluster_size}"
   instance_type = "${var.vault_instance_type}"
