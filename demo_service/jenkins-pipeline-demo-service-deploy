@@ -1,6 +1,10 @@
 
 pipeline {
 
+{
+ agent any
+}
+
   parameters {
 
     password (description:'Please provide AWS Access key', name: 'AWS_ACCESS_KEY_ID')
