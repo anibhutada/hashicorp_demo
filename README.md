@@ -42,15 +42,19 @@ export VAULT_TOKEN={provided client token}
 from vault_box; vault status
 from admin_box ; curl -k https://{vault-private-ip}:8200/v1/sys/health
 
-#setup vault aws secrets backend (policies found at /hashicorp_demo/vault/policies
+#setup vault aws secrets backend (policies found at /hashicorp_demo/vault/policies)
 vault secrets enable aws
 vault write aws/config/root access_key={access-key} secret_key={secret-key} region=us-east-1 policy_document=@policyroot.json
 vault write aws/roles/jenkins credential_type=federation_token policy_document=@policyrole.json
-vault read aws/creds/jenkins
 
-#setup vault userpass auth
+#setup vault userpass auth (policies found at /hashicorp_demo/vault/policies)
 vault auth enable userpass
-vault write auth/userpass/users/hashdemo password=hashdemo
+vault policy write jenkins jenkins.hcl
+vault write auth/userpass/users/hashdemo password=hashdemo policies=jenkins
+
+#gain vault credentials for jenkins pipeline
+curl --request POST --data '{"password": "hashdemo"}' https://{vault-private-ip}:8200/v1/auth/userpass/login/hashdemo
+curl -k --header "X-Vault-Token:s.eP93vbrSTUpoX3dMAnkhi8MZ"https://{vault-private-ip}:8200/v1/aws/creds/jenkins
 
 #terraform deploy demo_service
 cd /home/ec2-user/hashicorp_demo/demo_service/
