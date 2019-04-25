@@ -24,7 +24,7 @@ data "aws_kms_alias" "vault-example" {
   name = "alias/${var.auto_unseal_kms_key_alias}"
 }
 
-data "aws_ami" "jenkins-master" {
+data "aws_ami" "vault-server" {
   most_recent = true
   owners      = ["self"]
 
@@ -39,7 +39,7 @@ module "vault_cluster" {
   cluster_size  = "${var.vault_cluster_size}"
   instance_type = "${var.vault_instance_type}"
 
-  ami_id    = "${data.aws_ami.jenkins-master.id}"
+  ami_id    = "${data.aws_ami.vault-server.id}"
   user_data = "${data.template_file.user_data_vault_cluster.rendered}"
 
   vpc_id     = "${data.aws_vpc.default.id}"
@@ -93,7 +93,7 @@ module "consul_cluster" {
   cluster_tag_key   = "${var.consul_cluster_tag_key}"
   cluster_tag_value = "${var.consul_cluster_name}"
 
-  ami_id    = "${var.ami_id}"
+  ami_id    = "${data.aws_ami.vault-server.id}"
   user_data = "${data.template_file.user_data_consul.rendered}"
 
   vpc_id     = "${data.aws_vpc.default.id}"
