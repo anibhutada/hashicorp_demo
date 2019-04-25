@@ -23,13 +23,23 @@ data "terraform_remote_state""aws_global" {
 data "aws_kms_alias" "vault-example" {
   name = "alias/${var.auto_unseal_kms_key_alias}"
 }
+
+data "aws_ami" "jenkins-master" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["vault-consul-hashicorop-demo"]
+  }
+}
 module "vault_cluster" {
   source = "modules/vault-cluster"
   cluster_name  = "${var.vault_cluster_name}"
   cluster_size  = "${var.vault_cluster_size}"
   instance_type = "${var.vault_instance_type}"
 
-  ami_id    = "${var.ami_id}"
+  ami_id    = "${data.aws_ami.jenkins-master.id}"
   user_data = "${data.template_file.user_data_vault_cluster.rendered}"
 
   vpc_id     = "${data.aws_vpc.default.id}"
