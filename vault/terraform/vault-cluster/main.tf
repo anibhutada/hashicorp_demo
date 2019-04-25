@@ -6,7 +6,7 @@ terraform {
     backend "s3" {
       region = "us-east-1"
       bucket = "hashicorp-demo-state"
-      key = "terraform/jenkins/terraform.tfstate"
+      key = "terraform/vault/terraform.tfstate"
     }
     required_version = ">= 0.11.0"
 }
@@ -16,7 +16,7 @@ data "terraform_remote_state""aws_global" {
     config {
             region = "us-east-1"
             bucket = "hashicorp-demo-state"
-            key = "terraform/jenkins/terraform.tfstate"
+            key = "terraform/vault/terraform.tfstate"
     }
 }
 
