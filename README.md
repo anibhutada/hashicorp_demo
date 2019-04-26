@@ -11,7 +11,7 @@ Use Vault AWS Secret Engine and userpass Auth to validate developers AWS permiss
 The following is a sequence of steps to deploy an Developer Worksation, Jenkins Server, and Vault Cluster with Consul Backend. 
 
 ### build admin_box (optional)
-Deploy EC2 instance via AWS console
+Deploy EC2 instance via AWS console \
 use ./admin_box/user_data contents as EC2 user data
 
 ### Packer create jenkins ami
