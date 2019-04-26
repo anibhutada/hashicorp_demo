@@ -56,8 +56,11 @@ vault write auth/userpass/users/hashdemo password=hashdemo policies=jenkins
 curl --request POST --data '{"password": "hashdemo"}' https://{vault-private-ip}:8200/v1/auth/userpass/login/hashdemo
 curl -k --header "X-Vault-Token:s.eP93vbrSTUpoX3dMAnkhi8MZ"https://{vault-private-ip}:8200/v1/aws/creds/jenkins
 
-#terraform deploy demo_service
-cd /home/ec2-user/hashicorp_demo/demo_service/
-terraform init
-terraform plan
-terraform apply -auto-approve
+#Jenkins/Terraform deploy demo_service with Vault token
+Login to Jenkins server
+Navigate to Manage Jenkins -> Manage Plugins and install Terraform Plugin
+Navigate to Manage Jenkins -> Global Tool Configuration -> Terraform and create an installation named Terraform
+Create a pipeline build that uses the git repo as SCM and /demo_service/jenkins-pipeline-demo-service-deploy as the pipeline file
+Add three build paramets of password type (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_SESSION_TOKEN)
+Save and Build with Parameters
+Provide your Vault token generated in the previous step
