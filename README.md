@@ -1,6 +1,9 @@
 # hashicorp_demo
 
-The purpose of this demo is to highlight a use case for Hashicorp Products.  The products chosen to demo are Vault, Terraform, Packer and Consul. 
+The purpose of this demo is to highlight a use case for Hashicorp Products.  
+The products chosen to demo are Vault, Terraform, Packer and Consul.
+## Business Use Case = Need to provide a secure CI/CD framework for company wide developers on AWS. 
+Solution = Use Vault AWS Secret Engine and userpass Auth to validate developers AWS permissions. Use Vault issued federation_token within Terraform deployments from Jenkins Pipelines. 
 
 #build admin_box (optional)
 Deploy EC2 instance via AWS console
