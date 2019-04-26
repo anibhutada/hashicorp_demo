@@ -5,7 +5,7 @@ The products chosen to demo are Vault, Terraform, Packer and Consul.
 #### Business Use Case
 Need to provide a secure CI/CD framework for company wide developers on AWS. 
 #### Solution
-Use Vault AWS Secret Engine and userpass Auth to validate developers AWS permissions. \]
+Use Vault AWS Secret Engine and userpass Auth to validate developers AWS permissions. \
 Use Vault issued federation_token within Terraform deployments from Jenkins Pipelines. 
 
 ![Solution Image](https://github.com/bpayt2/terragrunt_poc/blob/master/hashicorp_demo.PNG)
@@ -53,6 +53,8 @@ export VAULT_TOKEN={provided client token}
 
 
 ## Configure and use Vault
+The following is a sequence of steps to configure AWS Secrets Engine and userpass Auth. \ 
+Next a developer request a Vault token and applies it to Jenkins pipeline to deploy a Lambda function into AWS.
 
 ### Validate vault status
 from vault_box; vault status \
