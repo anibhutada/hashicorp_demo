@@ -53,7 +53,7 @@ export VAULT_TOKEN={provided client token}
 
 
 ## Configure and use Vault
-The following is a sequence of steps to configure AWS Secrets Engine and userpass Auth. \ 
+The following is a sequence of steps to configure AWS Secrets Engine and userpass Auth. \
 Next a developer request a Vault token and applies it to Jenkins pipeline to deploy a Lambda function into AWS.
 
 ### Validate vault status
