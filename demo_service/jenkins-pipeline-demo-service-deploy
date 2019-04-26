@@ -29,7 +29,7 @@ environment {
 
 stages{
 
-    stage ('Install Terraform') {
+    stage ('Set Terraform Path') {
     steps {
     script{
     def tfHome = tool name: 'Terraform'
@@ -42,7 +42,9 @@ stages{
     stage('Terraform Init') {
     steps {
       dir('demo_service')
+      {
       sh 'terraform init -backend=true -input=false'
+      }
       }
    }
 
@@ -50,8 +52,9 @@ stages{
 
       steps {
           dir('demo_service')
+          {
           sh 'terraform plan -input=false -out=plan'
-
+          }
         }
 
     }
@@ -60,8 +63,9 @@ stages{
 
       steps {
         dir('demo_service')
+        {
         sh 'terraform apply plan -lock=false -input=false'
-
+        }
         }
 
 
