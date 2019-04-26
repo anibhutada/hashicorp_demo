@@ -32,7 +32,7 @@ stages{
     stage ('Install Terraform') {
     steps {
     script{
-     def tfHome = tool name: 'Terraform'
+    def tfHome = tool name: 'Terraform'
     env.PATH = "${tfHome}:${env.PATH}"
     }
     sh 'terraform -version'
@@ -40,8 +40,8 @@ stages{
     
     }
     stage('Terraform Init') {
-    
     steps {
+      dir('demo_service')
       sh 'terraform init -backend=true -input=false'
       }
    }
@@ -49,7 +49,7 @@ stages{
     stage('Terraform Plan') {
 
       steps {
-
+          dir('demo_service')
           sh 'terraform plan -input=false -out=plan'
 
         }
@@ -59,7 +59,7 @@ stages{
     stage('Terraform Apply') {
 
       steps {
-
+        dir('demo_service')
         sh 'terraform apply plan -lock=false -input=false'
 
         }
