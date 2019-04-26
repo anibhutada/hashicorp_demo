@@ -1,5 +1,7 @@
 # hashicorp_demo
 
+The purpose of this demo is to highlight a use case for Hashicorp Products.  The products chosen to demo are Vault, Terraform, Packer and Consul. 
+
 #build admin_box (optional)
 Deploy EC2 instance via AWS console
 use ./admin_box/user_data contents as EC2 user data
