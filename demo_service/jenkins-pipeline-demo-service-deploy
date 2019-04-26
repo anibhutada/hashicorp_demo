@@ -62,10 +62,9 @@ stages{
     stage('Terraform Apply') {
 
       steps {
-        input 'plan'
         dir('demo_service')
         {
-        sh 'terraform apply -lock=false -input=false'
+        sh 'terraform apply plan'
         }
         }
 
