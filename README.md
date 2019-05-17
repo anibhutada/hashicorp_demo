@@ -8,7 +8,7 @@ Need to provide a secure CI/CD framework for company wide developers on AWS.
 Use Vault AWS Secret Engine and userpass Auth to validate developers AWS permissions. \
 Use Vault issued federation_token within Terraform deployments from Jenkins Pipelines. 
 
-![Solution Image](https://github.com/bpayt2/hashicorp_demo/hashicorp_demo.PNG)
+![Solution Image](/hashicorp_demo.PNG)
 
 ## Deploy Infrastructure
 The following is a sequence of steps to deploy an Developer Worksation, Jenkins Server, and Vault Cluster with Consul Backend. 
